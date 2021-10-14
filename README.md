@@ -1,5 +1,5 @@
 # GeometryObjects.jl
-Demonstrate 2D ellastic collision in Julia
+Demonstrate [2D elastic collision](https://en.wikipedia.org/wiki/Elastic_collision) in Julia
 
 ![](readme_assets/result.gif)
 
