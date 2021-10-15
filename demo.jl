@@ -20,7 +20,7 @@ function setup_particle(sys::CollisionSystem)
     num_particles = sys.num_particles
     while length(particles) != num_particles
         θ = 2π * rand()
-        v_abs = 0.08
+        v_abs = 0.1
         v = Velocity2D(v_abs * cos(θ), v_abs * sin(θ))
         m = r = rand(Uniform(0.1, 0.3))
         x = rand(Uniform(sys.xmin + r, sys.xmax - r))
