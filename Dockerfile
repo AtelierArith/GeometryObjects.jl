@@ -19,8 +19,8 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* # clean up
 
 # Install basic packages on default environment
-RUN julia -e 'using Pkg; Pkg.add(["PyCall", "IJulia", "Pluto", "PlutoUI", "Revise", "BenchmarkTools"]); Pkg.precompile()'
-RUN julia -e 'using Pkg; Pkg.add(["Plots", "PyPlot", "PlotlyJS"])'
+RUN julia -e 'using Pkg; Pkg.add(["PyCall", "IJulia", "Pluto", "PlutoUI", "Revise", "BenchmarkTools"])' && \
+    julia -e 'using Pkg; Pkg.add(["Plots", "PyPlot", "PlotlyJS", "Distributions"])'
 
 WORKDIR /work
 ENV JULIA_PROJECT=/work
