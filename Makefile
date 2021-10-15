@@ -11,5 +11,6 @@ build:
 	docker-compose run --rm julia julia --project=/work -e 'using Pkg; Pkg.instantiate()'
 
 clean:
-	rm -f Manifest.toml
+	-rm -f Manifest.toml
+	-rm -f result.gif
 	docker-compose down
