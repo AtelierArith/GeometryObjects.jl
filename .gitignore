@@ -25,3 +25,5 @@ Manifest.toml
 
 # gif
 result.gif
+# ipynb
+.ipynb_checkpoints
