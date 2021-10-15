@@ -22,7 +22,7 @@ function setup_particle(sys::CollisionSystem)
         θ = 2π * rand()
         v_abs = 0.08
         v = Velocity2D(v_abs * cos(θ), v_abs * sin(θ))
-        m = r = rand(Uniform(0.2, 0.35))
+        m = r = rand(Uniform(0.1, 0.3))
         x = rand(Uniform(sys.xmin + r, sys.xmax - r))
         y = rand(Uniform(sys.ymin + r, sys.ymax - r))
 
