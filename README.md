@@ -11,3 +11,12 @@ $ julia --project=@. demo.jl
 ```
 
 After that you'll see a gif file `result.gif` is generated.
+
+# Appendix: using Docker
+
+You can execute `demo.jl` out of the box by creating the Docker image/container. Just try this:
+
+```console
+$ make
+$ docker-compose run --rm julia julia demo.jl
+```
