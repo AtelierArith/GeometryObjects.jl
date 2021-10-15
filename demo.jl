@@ -1,21 +1,10 @@
-#=
-using Pkg
-
-for pkg in ["Plots", "Distributions"]
-    if isnothing(Base.find_package(pkg))
-        Pkg.add(pkg)
-    end
-end
-=#
-
+# -*- coding: utf-8 -*-
 using LinearAlgebra
 
 using Plots
 using Distributions
 
 using GeometryObjects
-
-
 
 Base.@kwdef struct CollisionSystem
     xmin::Float64 = -4
@@ -83,7 +72,7 @@ dist(pt1, pt2) = sqrt((pt1.x - pt2.x)^2 + (pt1.y - pt2.y)^2)
 has_contact(c1::Circle2D, c2::Circle2D) = c1.r + c2.r ≥ dist(c1.pt, c2.pt)
 has_contact(p1::Particle2D, p2::Particle2D) = has_contact(p1.c, p2.c)
 
-isijulia() = isdefined(:Main, :IJulia)
+isijulia() = isdefined(Main, :IJulia)
 
 function create_animation(sys::CollisionSystem; disp::Bool=true)
     particles = setup_particle(sys)
@@ -143,5 +132,5 @@ function create_animation(sys::CollisionSystem; disp::Bool=true)
     return anim
 end
 
-anim = create_animation(CollisionSystem(;maxT=100, xmin=-8, xmax=8), disp=false)
+anim = create_animation(CollisionSystem(;maxT=100, xmin=-8, xmax=8), disp=isijulia())
 gif(anim, "result.gif")
