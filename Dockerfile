@@ -40,4 +40,6 @@ EXPOSE 8000
 # For Pluto Server
 EXPOSE 9999
 
+ENV GKSwstype="100"
+
 CMD ["julia"]
