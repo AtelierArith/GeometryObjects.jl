@@ -6,6 +6,8 @@ Demonstrate [2D elastic collision](https://en.wikipedia.org/wiki/Elastic_collisi
 # How to use
 
 ```console
+$ git clone https://github.com/AtelierArith/GeometryObjects.jl.git
+$ cd GeometryObjects.jl
 $ julia --project=@. -e 'using Pkg; Pkg.instantiate()'
 $ julia --project=@. demo.jl
 ```
