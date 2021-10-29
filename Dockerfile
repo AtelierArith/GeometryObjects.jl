@@ -1,20 +1,7 @@
 FROM julia:1.6.3
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    build-essential \
-    ca-certificates \
-    curl \
-    git \
-    unzip \
-    wget \
-    nano \
-    htop \
-    && \
-    apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* # clean up
-
 # Install basic packages on default environment
-RUN julia -e 'using Pkg; Pkg.add(["Revise", "Distributions"])' && \
-    julia -e 'using Pkg; Pkg.add(["Plots", "PyPlot", "PlotlyJS"])'
+RUN julia -e 'using Pkg; Pkg.add(["Plots", "Distributions"])'
 
 WORKDIR /work
 ENV JULIA_PROJECT=/work
