@@ -12,19 +12,15 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     && \
     apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* # clean up
 
-# Install NodeJS
-RUN apt-get update && \
-    curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs && \
-    apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* # clean up
-
 # Install basic packages on default environment
-RUN julia -e 'using Pkg; Pkg.add(["PyCall", "IJulia", "Pluto", "PlutoUI", "Revise", "BenchmarkTools"])' && \
-    julia -e 'using Pkg; Pkg.add(["Plots", "PyPlot", "PlotlyJS", "Distributions"])'
+RUN julia -e 'using Pkg; Pkg.add(["Revise", "Distributions"])' && \
+    julia -e 'using Pkg; Pkg.add(["Plots", "PyPlot", "PlotlyJS"])'
 
 WORKDIR /work
 ENV JULIA_PROJECT=/work
 COPY Project.toml /work/
+
+# create dummy module
 RUN mkdir -p /work/src && echo 'module GeometryObjects end' > /work/src/GeometryObjects.jl
 
 RUN julia -e '\
