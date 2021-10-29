@@ -1,7 +1,7 @@
 # GeometryObjects.jl
 Demonstrate [2D elastic collision](https://en.wikipedia.org/wiki/Elastic_collision) in Julia
 
-![](readme_assets/result.gif)
+![](https://github.com/AtelierArith/GeometryObjects.jl/releases/download/result%2Flatest/result.gif)
 
 # How to use
 
