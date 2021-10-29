@@ -140,7 +140,6 @@ function create_animation(sys::CollisionSystem; disp::Bool=true)
         end
     end
 
-    @show length(plt), typeof(plt)
     anim = @animate for p in plt[2:end]
         plot(p)
     end
