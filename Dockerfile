@@ -1,4 +1,4 @@
-FROM julia:1.6.3
+FROM julia:1.6.4
 
 # Install basic packages on default environment
 RUN julia -e 'using Pkg; Pkg.add(["Plots", "Distributions"])'
