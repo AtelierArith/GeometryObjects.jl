@@ -22,3 +22,7 @@ You can execute `demo.jl` out of the box by creating the Docker image/container.
 $ make
 $ docker-compose run --rm julia julia demo.jl
 ```
+
+# Appendix: Genie.jl
+
+https://github.com/AtelierArith/ElasticCollision.jl demonstrates 2D elastic collision using Genie.jl
