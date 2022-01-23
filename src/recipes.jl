@@ -40,4 +40,4 @@ end
     end
 end
 
-@recipe f(geomobjs::T...) where T <: ConcreteGeometricTypes = collect(geomobjs)
+@recipe f(geomobjs::T...) where {T<:ConcreteGeometricTypes} = collect(geomobjs)
