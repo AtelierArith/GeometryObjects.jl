@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
 jobs:
   build:
-    name: Julia ${{ matrix.version }} - ${{ matrix.os }} - ${{ matrix.arch }} - ${{ github.event_name }}
+    name: format-check
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -28,7 +28,7 @@ jobs:
     steps:
       - uses: julia-actions/setup-julia@latest
         with:
-          version: ${{ matrix.julia-version }}
+          version: ${{ matrix.version }}
 
       - uses: actions/checkout@v1
       - name: Install JuliaFormatter and format
