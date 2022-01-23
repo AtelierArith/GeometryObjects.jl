@@ -17,14 +17,14 @@ function populate_buffer!(buffer, img)
     global WIDTH, HEIGHT
     buffer .= zero(UInt32)
     h, w = size(img)
-    ratio = min(1, HEIGHT/h, WIDTH/w)
+    ratio = min(1, HEIGHT / h, WIDTH / w)
     nimg = imresize(img, ratio=ratio)
     nh, nw = size(nimg)
-    oh = (HEIGHT-nh) ÷ 2
-    ow = (WIDTH-nw) ÷ 2
+    oh = (HEIGHT - nh) ÷ 2
+    ow = (WIDTH - nw) ÷ 2
     for i in 1:nh
         for j in 1:nw
-            buffer[(oh+i-1)*WIDTH + ow+j] = mfb_rgb(nimg[i,j])
+            buffer[(oh+i-1)*WIDTH+ow+j] = mfb_rgb(nimg[i, j])
         end
     end
 end
@@ -67,9 +67,9 @@ function setup_particle(sys::CollisionSystem)
     return particles
 end
 
-function move!(sys::CollisionSystem, pt::Point2D, v::Velocity2D, r::Real=0, Δt=1.)
+function move!(sys::CollisionSystem, pt::Point2D, v::Velocity2D, r::Real=0, Δt=1.0)
     pt .+= Δt .* v # do not use `pt += v`
-    if pt.y  ≥ sys.ymax - r
+    if pt.y ≥ sys.ymax - r
         pt.y = 2(sys.ymax - r) - pt.y
         v.y = -v.y
     end
@@ -89,7 +89,7 @@ function move!(sys::CollisionSystem, pt::Point2D, v::Velocity2D, r::Real=0, Δt=
     return pt, v
 end
 
-move!(sys::CollisionSystem, p::Particle2D; Δt=1.) = move!(sys, p.c.pt, p.v, p.c.r, Δt)
+move!(sys::CollisionSystem, p::Particle2D; Δt=1.0) = move!(sys, p.c.pt, p.v, p.c.r, Δt)
 
 dist(pt1, pt2) = sqrt((pt1.x - pt2.x)^2 + (pt1.y - pt2.y)^2)
 has_contact(c1::Circle2D, c2::Circle2D) = c1.r + c2.r ≥ dist(c1.pt, c2.pt)
@@ -100,9 +100,9 @@ function minifb(sys::CollisionSystem)
     Δt = 0.1
     accumΔt = 0.0
     cnt = 0
-    
+
     buf = IOBuffer()
-    buffer = zeros(UInt32, HEIGHT*WIDTH)
+    buffer = zeros(UInt32, HEIGHT * WIDTH)
     window = mfb_open_ex(
         "Elastic Collision 2D",
         WIDTH, HEIGHT,
@@ -113,7 +113,7 @@ function minifb(sys::CollisionSystem)
         move!.(Ref(sys), particles; Δt)
         # naive collision algorithm
         for i in 1:length(particles)
-            for j in (i + 1):length(particles)
+            for j in (i+1):length(particles)
                 particle1 = particles[i]
                 particle2 = particles[j]
                 c1 = particle1.c
@@ -135,16 +135,21 @@ function minifb(sys::CollisionSystem)
                     end
 
                     # update velocity
-                    v1_next = v1 - 2m2 / (m1 + m2) * dot(v1 - v2, pt1 - pt2) * (pt1 - pt2) / dot(pt1 - pt2, pt1 - pt2)
-                    v2_next = v2 - 2m1 / (m2 + m1) * dot(v2 - v1, pt2 - pt1) * (pt2 - pt1) / dot(pt2 - pt1, pt2 - pt1)
+                    v1_next =
+                        v1 -
+                        2m2 / (m1 + m2) * dot(v1 - v2, pt1 - pt2) * (pt1 - pt2) /
+                        dot(pt1 - pt2, pt1 - pt2)
+                    v2_next =
+                        v2 -
+                        2m1 / (m2 + m1) * dot(v2 - v1, pt2 - pt1) * (pt2 - pt1) /
+                        dot(pt2 - pt1, pt2 - pt1)
                     particle1.v .= v1_next
                     particle2.v .= v2_next
-
                 end
             end
         end
 
-        if accumΔt ≥ 1.
+        if accumΔt ≥ 1.0
             cnt += 1
             s = plot(
                 size=(WIDTH, HEIGHT),
@@ -162,7 +167,7 @@ function minifb(sys::CollisionSystem)
             take!(buf)
             populate_buffer!(buffer, img)
             state = mfb_update(window, buffer)
-            if state!= MiniFB.STATE_OK
+            if state != MiniFB.STATE_OK
                 break
             end
         end
@@ -170,4 +175,4 @@ function minifb(sys::CollisionSystem)
     mfb_close(window)
 end
 
-minifb(CollisionSystem(;xmin=-8, xmax=8, num_particles=20))
+minifb(CollisionSystem(; xmin=-8, xmax=8, num_particles=20))
