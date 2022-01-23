@@ -4,19 +4,27 @@ name: format-check
 on:
   push:
     branches:
-      - 'master'
-      - 'release-'
+      - main
     tags: '*'
   pull_request:
-
+concurrency:
+  # Skip intermediate builds: always.
+  # Cancel intermediate builds: only if it is a pull request build.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
 jobs:
   build:
+    name: Julia ${{ matrix.version }} - ${{ matrix.os }} - ${{ matrix.arch }} - ${{ github.event_name }}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        julia-version: 1.6
-        julia-arch: [x64]
-        os: [ubuntu-latest]
+        version:
+          - '1.6'
+        os:
+          - ubuntu-latest
+        arch:
+          - x64
     steps:
       - uses: julia-actions/setup-julia@latest
         with:
