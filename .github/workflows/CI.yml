@@ -12,7 +12,7 @@ jobs:
       - name: Build Docker Image
         run: make
       - name: creategif
-        run: docker-compose run --rm julia julia demo.jl
+        run: docker-compose run --rm shell julia demo/gif/gif.jl
       - name: upload result to release page
         uses: ncipollo/release-action@v1
         with:
