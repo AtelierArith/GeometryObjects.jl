@@ -1,7 +1,7 @@
 version: '3'
 services:
 
-  julia:
+  shell:
     image: geomrecipejl
     container_name: geomrecipejl-julia
     volumes:
