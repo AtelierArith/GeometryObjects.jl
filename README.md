@@ -20,7 +20,7 @@ You can execute `demo.jl` out of the box by creating the Docker image/container.
 
 ```console
 $ make
-$ docker-compose run --rm shell julia demo.jl
+$ docker-compose run --rm shell julia demo/gif/gif.jl
 ```
 
 # Appendix: Genie.jl
