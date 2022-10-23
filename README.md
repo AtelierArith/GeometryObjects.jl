@@ -29,4 +29,4 @@ https://github.com/AtelierArith/ElasticCollision.jl demonstrates 2D elastic coll
 
 # Appendix MiniFB
 
-See [demo/minifb/README.md](demo/minifb/README.md)
+See [demo/minifb/README.md](https://github.com/AtelierArith/GeometryObjects.jl/tree/main/demo/minifb)
