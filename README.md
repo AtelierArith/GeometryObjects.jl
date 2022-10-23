@@ -16,7 +16,7 @@ After that you'll see a gif file `result.gif` is generated.
 
 # Appendix: using Docker
 
-You can execute `demo.jl` out of the box by creating the Docker image/container. Just try this:
+You can execute `demo/gif/gif.jl` out of the box by creating a Docker image from a Dockerfile we prepared. Just try this:
 
 ```console
 $ make
