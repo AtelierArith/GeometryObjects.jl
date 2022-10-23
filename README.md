@@ -9,7 +9,7 @@ Demonstrate [2D elastic collision](https://en.wikipedia.org/wiki/Elastic_collisi
 $ git clone https://github.com/AtelierArith/GeometryObjects.jl.git
 $ cd GeometryObjects.jl
 $ julia --project=@. -e 'using Pkg; Pkg.instantiate()'
-$ julia --project=@. demo.jl
+$ julia --project=@. demo/gif/gif.jl
 ```
 
 After that you'll see a gif file `result.gif` is generated.
@@ -26,3 +26,7 @@ $ docker-compose run --rm shell julia demo/gif/gif.jl
 # Appendix: Genie.jl
 
 https://github.com/AtelierArith/ElasticCollision.jl demonstrates 2D elastic collision using Genie.jl
+
+# Appendix MiniFB
+
+See [demo/minifb/README.md](demo/minifb/README.md)
