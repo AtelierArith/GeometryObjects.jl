@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-using Pkg;
-Pkg.add("MiniFB");
-
 using LinearAlgebra
 
 using Plots
