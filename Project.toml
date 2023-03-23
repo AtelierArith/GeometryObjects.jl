@@ -1,7 +1,7 @@
 name = "GeometryObjects"
 uuid = "59e3ae73-4278-456f-917f-ed543228021a"
 authors = ["Satoshi Terasaki <terasakisatoshi.math@gmail.com>"]
-version = "0.2.0"
+version = "0.3.0"
 
 [deps]
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
